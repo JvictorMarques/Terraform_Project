@@ -21,7 +21,7 @@ module "cloudfront" {
 
 module "sqs" {
   source     = "terraform-aws-modules/sqs/aws"
-  name       = "SQS/DLQ"
+  name       = "jv-sqs"
   create_dlq = true
   tags = {
     Iac = "true"
