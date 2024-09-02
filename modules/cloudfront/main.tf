@@ -37,5 +37,6 @@ resource "aws_cloudfront_distribution" "cloudfront" {
   viewer_certificate {
     cloudfront_default_certificate = true
   }
-  price_class = "PriceClass_200"
+  price_class = "${var.price_class}"
+  tags = "${var.cdn_tags}"
 }
