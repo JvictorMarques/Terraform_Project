@@ -1,5 +1,5 @@
 variable "bucket_state" {
   type        = string
-  default     = "state-bucket-tf"
+  default     = "estado-bucket"
   description = "Estado do Bucket"
 }
