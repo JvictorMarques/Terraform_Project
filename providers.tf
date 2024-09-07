@@ -6,8 +6,9 @@ terraform {
     }
   }
   backend "s3" {
-    bucket    = "estado-bucket"
-    region  = "us-east-2"
+    profile = "AdministratorAccess-864981720117"
+    bucket  = "estado-bucket"
+    region  = "us-east-1"
     key     = "terraform.tfstate"
     encrypt = true
   }
@@ -22,6 +23,16 @@ provider "aws" {
 resource "aws_s3_bucket" "terraform_state" {
   bucket = var.bucket_state
   lifecycle {
-    prevent_destroy = true
+    prevent_destroy = false
   }
+}
+
+resource "aws_s3_bucket_versioning" "terraform_state" {
+  bucket = aws_s3_bucket.terraform_state.bucket
+  versioning_configuration {
+    status = "Enabled"
+  }
+  depends_on = [
+    aws_s3_bucket.terraform_state
+  ]
 }
